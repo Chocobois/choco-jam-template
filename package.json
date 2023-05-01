@@ -1,0 +1,26 @@
+{
+  "name": "chocobois-jam-template",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "rimraf dist && vite build",
+    "postinstall": "neu update"
+  },
+  "devDependencies": {
+    "@neutralinojs/neu": "^9.5.1",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.3",
+    "vite-plugin-checker": "^0.6.0",
+    "vite-plugin-zip-pack": "^1.0.5",
+    "vite-tsconfig-paths": "^4.2.0"
+  },
+  "dependencies": {
+    "phaser": "^3.60.0",
+    "phaser3-rex-plugins": "^1.60.1"
+  }
+}
