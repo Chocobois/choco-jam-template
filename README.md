@@ -1,5 +1,4 @@
-# Rerooted
-## Chocobois Game Jam Template
+# Chocobois Game Jam Template
 
 We make game, but faster
 
