@@ -1,7 +1,7 @@
 import { BaseScene } from "./BaseScene";
 import { Music } from "@/components/Music";
 
-import { version, revision } from "@/version.json";
+import { version } from "@/version.json";
 
 const creditsLeft = `Game Jam Template 
 
@@ -86,7 +86,7 @@ export class TitleScene extends BaseScene {
 		this.tap.setStroke("#FFF", 40*4*this.SCALE);
 		this.tap.setPadding(2*40*4*this.SCALE);
 
-		this.version = this.createText(this.W, this.H, 40*this.SCALE, "#000", `v${revision}.${version}`);
+		this.version = this.createText(this.W, this.H, 40*this.SCALE, "#000", version);
 		this.version.setOrigin(1, 1);
 		this.version.setAlpha(-1);
 		this.version.setStroke("#FFF", 10*4*this.SCALE);
