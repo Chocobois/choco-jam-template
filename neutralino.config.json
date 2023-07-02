@@ -10,11 +10,12 @@
   "tokenSecurity": "one-time",
   "logging": {
     "enabled": true,
-    "writeToLogFile": true
+    "writeToLogFile": false
   },
   "nativeAllowList": [
     "app.exit",
-    "os.showMessageBox"
+    "os.showMessageBox",
+    "window.center"
   ],
   "modes": {
     "window": {
