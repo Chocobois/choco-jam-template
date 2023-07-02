@@ -3,7 +3,7 @@ import { execSync } from 'child_process';
 import { writeFileSync } from 'fs';
 
 const WriteGitVersion = () => {
-    const count = execSync('git rev-list --count main').toString().trim();
+    const count = execSync('git rev-list --count HEAD').toString().trim();
     const short = execSync('git rev-parse --short HEAD').toString().trim();
     const version = `v${count}.${short}`;
     writeFileSync('./src/version.json', JSON.stringify({count, short, version}));
