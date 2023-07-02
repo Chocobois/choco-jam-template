@@ -14,6 +14,7 @@ const spritesheets: SpriteSheet[] = [
 
 ];
 
+/* Audios */
 const audios: Audio[] = [
 	music('title', 'm_main_menu'),
 	music('first', 'm_first'),

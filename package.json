@@ -1,6 +1,5 @@
 {
   "name": "chocobois-jam-template",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "license": "MIT",
@@ -12,10 +11,10 @@
   },
   "devDependencies": {
     "@neutralinojs/neu": "^9.6.0",
-    "rimraf": "^5.0.0",
-    "typescript": "^5.0.4",
+    "rimraf": "^5.0.1",
+    "typescript": "^5.1.6",
     "vite": "^4.3.9",
-    "vite-plugin-checker": "^0.6.0",
+    "vite-plugin-checker": "^0.6.1",
     "vite-plugin-zip-pack": "^1.0.6",
     "vite-tsconfig-paths": "^4.2.0"
   },
