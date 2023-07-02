@@ -3,6 +3,7 @@ import zip from 'vite-plugin-zip-pack';
 import { execSync } from 'child_process';
 import checker from 'vite-plugin-checker'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import getGitVersion from './automation/git-version';
 
 const CheckerConfig = {
   terminal: true,
@@ -14,6 +15,7 @@ export default defineConfig({
   root: 'src',
   plugins: [
     tsconfigPaths(),
+    getGitVersion(),
     checker({
       typescript: true,
       ...CheckerConfig

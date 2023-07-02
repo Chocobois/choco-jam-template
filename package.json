@@ -11,16 +11,16 @@
     "postinstall": "neu update"
   },
   "devDependencies": {
-    "@neutralinojs/neu": "^9.5.1",
+    "@neutralinojs/neu": "^9.6.0",
     "rimraf": "^5.0.0",
     "typescript": "^5.0.4",
-    "vite": "^4.3.3",
+    "vite": "^4.3.9",
     "vite-plugin-checker": "^0.6.0",
-    "vite-plugin-zip-pack": "^1.0.5",
+    "vite-plugin-zip-pack": "^1.0.6",
     "vite-tsconfig-paths": "^4.2.0"
   },
   "dependencies": {
     "phaser": "^3.60.0",
-    "phaser3-rex-plugins": "^1.60.1"
+    "phaser3-rex-plugins": "^1.60.3"
   }
 }

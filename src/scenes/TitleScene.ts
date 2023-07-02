@@ -1,7 +1,9 @@
 import { BaseScene } from "./BaseScene";
 import { Music } from "@/components/Music";
 
-const creditsLeft = `Global Game Jam 2023
+import { version } from "@/version.json";
+
+const creditsLeft = `Game Jam Template 
 
 @Golenchu
 @ArcticFqx
@@ -35,6 +37,7 @@ export class TitleScene extends BaseScene {
 	public title: Phaser.GameObjects.Text;
 	public subtitle: Phaser.GameObjects.Text;
 	public tap: Phaser.GameObjects.Text;
+	public version: Phaser.GameObjects.Text;
 
 	public musicTitle: Phaser.Sound.WebAudioSound;
 	public select: Phaser.Sound.WebAudioSound;
@@ -63,7 +66,7 @@ export class TitleScene extends BaseScene {
 		this.foreground.y += 4*250*this.SCALE;
 
 
-		this.title = this.createText(0.25*this.W, 0.7*this.H, 160*this.SCALE, "#000", "Rerooted");
+		this.title = this.createText(0.25*this.W, 0.7*this.H, 160*this.SCALE, "#000", "Game Title");
 		this.title.setOrigin(0.5);
 		this.title.setStroke("#FFF", 40*8*this.SCALE);
 		this.title.setPadding(2*40*8*this.SCALE);
@@ -82,6 +85,12 @@ export class TitleScene extends BaseScene {
 		this.tap.setAlpha(-1);
 		this.tap.setStroke("#FFF", 40*4*this.SCALE);
 		this.tap.setPadding(2*40*4*this.SCALE);
+
+		this.version = this.createText(this.W, this.H, 40*this.SCALE, "#000", version);
+		this.version.setOrigin(1, 1);
+		this.version.setAlpha(-1);
+		this.version.setStroke("#FFF", 10*4*this.SCALE);
+		this.version.setPadding(2*40*4*this.SCALE);
 
 		this.credits = this.add.container(0, 0);
 		this.credits.setVisible(false);
@@ -133,6 +142,7 @@ export class TitleScene extends BaseScene {
 
 			this.title.alpha += 0.02 * ((this.title.visible ? 1 : 0) - this.title.alpha);
 			this.subtitle.alpha += 0.02 * ((this.subtitle.visible ? 1 : 0) - this.subtitle.alpha);
+			this.version.alpha += 0.02 * ((this.version.visible ? 1 : 0) - this.version.alpha);
 
 			if (this.credits.visible) {
 				this.credits.alpha += 0.02 * (1 - this.credits.alpha);

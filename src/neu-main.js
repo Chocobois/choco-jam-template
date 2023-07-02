@@ -1,12 +1,14 @@
 import './neutralino';
 
 const NeutralinoLoad = () => {
-    const onWindowClose = () => {
-        Neutralino.app.exit();
-    }
-
     Neutralino.init();
-    Neutralino.events.on("windowClose", onWindowClose);
+
+    Neutralino.events.on("windowClose", () => {
+        Neutralino.app.exit();
+    });
+    Neutralino.events.on("windowFocus", () => {
+        Neutralino.window.center();
+    })
 }
 
 if ( window.NL_TOKEN ) {
