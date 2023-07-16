@@ -4,6 +4,7 @@ import { GrayScalePostFilter } from "@/pipelines/GrayScalePostFilter";
 import { BlurPostFilter } from "@/pipelines/BlurPostFilter";
 import BendWaves from "@/pipelines/BendWavesPostFX";
 import BendWaves2 from "@/pipelines/BendWavesPostFX2";
+import { title, version } from '@/version.json';
 
 
 export class PreloadScene extends BaseScene {
@@ -34,6 +35,7 @@ export class PreloadScene extends BaseScene {
 
 		// Loading text
 		this.createText(x, y, 48, "#DDDDDD", "Loading...").setOrigin(0, 1.5);
+		this.createText(5, 5, 32, '#DDDDDD', `${title} ${version}`).setOrigin(0, 0);
 
 		// Listener
 		this.load.on("progress", (progress: number) => {

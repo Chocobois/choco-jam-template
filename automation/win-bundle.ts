@@ -17,5 +17,6 @@ export default function buildWinApp() {
 	return {
 		name: 'build-windows-bundle',
 		closeBundle: BuildMacApp,
+		apply: 'build',
 	} as PluginOption;
 }

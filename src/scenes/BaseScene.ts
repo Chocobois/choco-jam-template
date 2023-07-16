@@ -70,11 +70,6 @@ export class BaseScene extends Phaser.Scene {
 		image.setScale(Math.min(this.W / image.width, this.H / image.height));
 	}
 
-
-	get SCALE(): number {
-		return this.H / 1080;
-	}
-
 	// Returns width of screen
 	get W(): number {
 		return this.cameras.main.displayWidth;

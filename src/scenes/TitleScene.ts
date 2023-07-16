@@ -1,9 +1,9 @@
 import { BaseScene } from "./BaseScene";
 import { Music } from "@/components/Music";
 
-import { version } from "@/version.json";
+import { title, version } from "@/version.json";
 
-const creditsLeft = `Game Jam Template 
+const creditsLeft = `${title} 
 
 @Golenchu
 @ArcticFqx
@@ -62,49 +62,48 @@ export class TitleScene extends BaseScene {
 
 		this.background.setVisible(false);
 		this.background.setAlpha(0);
-		this.background.y += 4*1000*this.SCALE;
-		this.foreground.y += 4*250*this.SCALE;
+		this.background.y += 4000;
+		this.foreground.y += 1000;
 
-
-		this.title = this.createText(0.25*this.W, 0.7*this.H, 160*this.SCALE, "#000", "Game Title");
+		this.title = this.createText(0.25*this.W, 0.7*this.H, 160, "#000", "Game Title");
 		this.title.setOrigin(0.5);
-		this.title.setStroke("#FFF", 40*8*this.SCALE);
-		this.title.setPadding(2*40*8*this.SCALE);
+		this.title.setStroke("#FFF", 40*8);
+		this.title.setPadding(2*40*8);
 		this.title.setVisible(false);
 		this.title.setAlpha(0);
 
-		this.subtitle = this.createText(0.25*this.W, 0.87*this.H, 120*this.SCALE, "#000", "Tap to start");
+		this.subtitle = this.createText(0.25*this.W, 0.87*this.H, 120, "#000", "Tap to start");
 		this.subtitle.setOrigin(0.5);
-		this.subtitle.setStroke("#FFF", 40*3*this.SCALE);
-		this.subtitle.setPadding(2*40*2*this.SCALE);
+		this.subtitle.setStroke("#FFF", 40*3);
+		this.subtitle.setPadding(2*40*2);
 		this.subtitle.setVisible(false);
 		this.subtitle.setAlpha(0);
 
-		this.tap = this.createText(this.CX, this.CY, 4*35*this.SCALE, "#000", "Tap to focus");
+		this.tap = this.createText(this.CX, this.CY, 140, "#000", "Tap to focus");
 		this.tap.setOrigin(0.5);
 		this.tap.setAlpha(-1);
-		this.tap.setStroke("#FFF", 40*4*this.SCALE);
-		this.tap.setPadding(2*40*4*this.SCALE);
+		this.tap.setStroke("#FFF", 40*4);
+		this.tap.setPadding(2*40*4);
 
-		this.version = this.createText(this.W, this.H, 40*this.SCALE, "#000", version);
+		this.version = this.createText(this.W, this.H, 40, "#000", version);
 		this.version.setOrigin(1, 1);
 		this.version.setAlpha(-1);
-		this.version.setStroke("#FFF", 10*4*this.SCALE);
-		this.version.setPadding(2*40*4*this.SCALE);
+		this.version.setStroke("#FFF", 10*4);
+		this.version.setPadding(2*40*4);
 
 		this.credits = this.add.container(0, 0);
 		this.credits.setVisible(false);
 		this.credits.setAlpha(0);
 
-		let credits1 = this.createText(0.6*this.W, 4*this.SCALE, 50*this.SCALE, "#c2185b", creditsLeft);
-		credits1.setStroke("#FFF", 100*this.SCALE);
-		credits1.setPadding(2*100*this.SCALE);
+		let credits1 = this.createText(0.6*this.W, 4, 50, "#c2185b", creditsLeft);
+		credits1.setStroke("#FFF", 100);
+		credits1.setPadding(2*100);
 		credits1.setLineSpacing(0);
 		this.credits.add(credits1);
 
-		let credits2 = this.createText(0.8*this.W, 4*this.SCALE, 50*this.SCALE, "#c2185b", creditsRight);
-		credits2.setStroke("#FFF", 100*this.SCALE);
-		credits2.setPadding(2*100*this.SCALE);
+		let credits2 = this.createText(0.8*this.W, 4, 50, "#c2185b", creditsRight);
+		credits2.setStroke("#FFF", 100);
+		credits2.setPadding(2*100);
 		credits2.setLineSpacing(0);
 		this.credits.add(credits2);
 
