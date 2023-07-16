@@ -45,7 +45,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
           prerelease: false
-          title: "Game latest build"
+          title: "${{ env.game_title }} latest build"
           files: |
             ./dist/game-web.zip
             ./dist/game-win.zip
