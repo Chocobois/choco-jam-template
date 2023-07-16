@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 import zip from 'vite-plugin-zip-pack';
 import checker from 'vite-plugin-checker';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import getGitVersion from './automation/git-version';
+import writeGitVersion from './automation/git-version';
 import neuBuild from './automation/neu-build';
 import buildWinApp from './automation/win-bundle';
 import buildMacApp from './automation/mac-bundle';
@@ -27,7 +27,7 @@ export default () => {
 		root: 'src',
 		plugins: [
 			tsconfigPaths(),
-			getGitVersion(),
+			writeGitVersion(),
 			checker({
 				typescript: true,
 				...CheckerConfig,

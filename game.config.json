@@ -1,9 +1,9 @@
 {
 	"team": "Chocobois",
 	"title": "Game Jam Template",
-	"description": "We make game, but faster",
+	"description": "We make game, but faster!",
 	"itch": {
-		"enabled": false,
+		"upload": false,
 		"user": "username",
 		"game": "game-name"
 	}

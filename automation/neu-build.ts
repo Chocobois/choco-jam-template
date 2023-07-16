@@ -7,7 +7,7 @@ export default function neuBuild(): PluginOption {
 		name: 'neu-build',
 		apply: 'build',
 		closeBundle() {
-			console.log('Building standalone app');
+			console.log('Building game app');
 			WriteNeuConfig();
 			execSync('neu build');
 		},

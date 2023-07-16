@@ -1,20 +1,16 @@
 import { PluginOption } from 'vite';
-import { team, title } from '../game.config.json';
+import { title, title_dashed, game_dir, build_path } from './util/constants';
 import { mkdirSync, copyFileSync } from 'fs';
 
 const BuildMacApp = () => {
-	console.log(`Building Windows exe...`);
-	const teamId = team.toLowerCase().replace(/\s/gi, '-');
-	const appId = title.toLowerCase().replace(/\s/gi, '-');
-	const buildName = `${teamId}-${appId}`;
+	console.log(`Packaging Windows exe...`);
 
-	const winDir = `./dist/win/${title}`;
-	const buildPath = `./dist/${buildName}/`;
+	const out_dir = `./dist/win/${title_dashed}`;
 
 	mkdirSync('./dist/win');
-	mkdirSync(winDir);
-	copyFileSync(`${buildPath}/${buildName}-win_x64.exe`, `${winDir}/${title}.exe`);
-	copyFileSync(`${buildPath}/resources.neu`, `${winDir}/resources.neu`);
+	mkdirSync(out_dir);
+	copyFileSync(`${build_path}/${game_dir}-win_x64.exe`, `${out_dir}/${title}.exe`);
+	copyFileSync(`${build_path}/resources.neu`, `${out_dir}/resources.neu`);
 };
 
 export default function buildWinApp() {

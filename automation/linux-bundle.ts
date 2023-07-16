@@ -1,22 +1,19 @@
 import { PluginOption } from 'vite';
-import { team, title } from '../game.config.json';
+import { title_dashed, game_dir, build_path } from './util/constants';
 import { mkdirSync, copyFileSync } from 'fs';
 
 const BuildWinApp = () => {
-	console.log(`Building Linux app...`);
-	const teamId = team.toLowerCase().replace(/\s/gi, '-');
-	const appId = title.toLowerCase().replace(/\s/gi, '-');
-	const buildName = `${teamId}-${appId}`;
+	console.log(`Packaging Linux app...`);
 
-	const linDir = `./dist/linux/${appId}`;
-	const buildPath = `./dist/${buildName}/`;
+	const out_dir = `./dist/linux/${title_dashed}`;
 
 	mkdirSync('./dist/linux');
-	mkdirSync(linDir);
-	copyFileSync(`${buildPath}/${buildName}-linux_x64`, `${linDir}/${appId}-x64`);
-	copyFileSync(`${buildPath}/${buildName}-linux_arm64`, `${linDir}/${appId}-arm64`);
-	copyFileSync(`${buildPath}/${buildName}-linux_armhf`, `${linDir}/${appId}-armhf`);
-	copyFileSync(`${buildPath}/resources.neu`, `${linDir}/resources.neu`);
+	mkdirSync(out_dir);
+
+	copyFileSync(`${build_path}/${game_dir}-linux_x64`, `${out_dir}/${title_dashed}-x64`);
+	copyFileSync(`${build_path}/${game_dir}-linux_arm64`, `${out_dir}/${title_dashed}-arm64`);
+	copyFileSync(`${build_path}/${game_dir}-linux_armhf`, `${out_dir}/${title_dashed}-armhf`);
+	copyFileSync(`${build_path}/resources.neu`, `${out_dir}/resources.neu`);
 };
 
 export default function buildWinApp() {

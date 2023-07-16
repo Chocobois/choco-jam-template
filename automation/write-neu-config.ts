@@ -1,18 +1,12 @@
-import { execSync } from 'child_process';
-import { team, title } from '../game.config.json';
+import { team, title, team_dashed, title_dashed, git_count } from './util/constants';
 import neuConf from './neu-template.json';
 import { writeFileSync } from 'fs';
 
 export default function WriteNeuConfig() {
-	const count = execSync('git rev-list --count HEAD').toString().trim();
-
-	const teamId = team.toLowerCase().replace(/\s/gi, '-');
-	const appId = title.toLowerCase().replace(/\s/gi, '-');
-
-	neuConf.applicationId = `${teamId}.${appId}`;
+	neuConf.applicationId = `${team_dashed}.${title_dashed}`;
 	neuConf.modes.window.title = `${team} - ${title}`;
-	neuConf.cli.binaryName = `${teamId}-${appId}`;
-	neuConf.version = `0.0.${count}`;
+	neuConf.cli.binaryName = `${team_dashed}-${title_dashed}`;
+	neuConf.version = `0.0.${git_count}`;
 
 	writeFileSync('neutralino.config.json', JSON.stringify(neuConf));
 }
