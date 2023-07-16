@@ -4,7 +4,7 @@ import { writeFileSync } from 'fs';
 
 export default function WriteNeuConfig() {
 	neuConf.applicationId = `${team_dashed}.${title_dashed}`;
-	neuConf.modes.window.title = `${team} - ${title}`;
+	neuConf.modes.window.title = `${title} by ${team}`;
 	neuConf.cli.binaryName = `${team_dashed}-${title_dashed}`;
 	neuConf.version = `0.0.${git_count}`;
 
