@@ -8,7 +8,7 @@ We make game, but faster
 2. `npm install`
 3. `npm run dev`
 
-Remember to update `game.config.json` accordingly.
+Remember to update [`game.config.json`](game.config.json) accordingly.
 
 ## Debugging
 
@@ -29,7 +29,7 @@ The repository is configured to automatically deploy to Github Pages, you just h
 
 It will also create new downloads under releases.
 ### Itch
-You can configure this repository to automatically deploy and upload releases to Itch. What you have to do is set the `BUTLER_CREDENTIALS` repository secret and set your Itch username and game name in `game.config.json`.
+You can configure this repository to automatically deploy and upload releases to Itch. What you have to do is set the `BUTLER_CREDENTIALS` repository secret and set your Itch username and game name in [`game.config.json`](game.config.json).
 
 ## System requirements
 ### Web version
