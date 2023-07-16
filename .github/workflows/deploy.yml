@@ -52,6 +52,18 @@ jobs:
             ./dist/game-mac.dmg
             ./dist/game-linux.zip
 
-      - name: Test conditional upload
+      - name: Upload to Itch
         if: ${{env.game_itch_upload  == 'true'}}
-        run: echo 'Try env var >${{env.game_itch_upload}}<'
+        uses: Ayowel/butler-to-itch@v1.0.0
+        with:
+          butler_key: ${{ secrets.BUTLER_CREDENTIALS }}
+          itch_user: ${{ env.game_itch_username }}
+          itch_game: ${{ env.game_itch_game }}
+          files: |
+            ./dist/game-web.zip
+            ./dist/game-win.zip
+            ./dist/game-mac.dmg
+            ./dist/game-linux.zip
+          auto_channel: true
+          butler_version: "latest"
+          check_signature: false
