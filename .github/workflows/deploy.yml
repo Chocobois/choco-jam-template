@@ -22,7 +22,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install
+        run: npm install && sudo apt install genisoimage
 
       - name: Load game.config.json
         uses: antifree/json-to-variables@v1.0.1
@@ -53,6 +53,5 @@ jobs:
             ./dist/game-linux.zip
 
       - name: Test conditional upload
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-        run: echo 'Try env var >${{env.game_itch_upload}}<  >${{env.BUTLER_CREDENTIALS}}<'
+        if: ${{env.game_itch_upload  == 'true'}}
+        run: echo 'Try env var >${{env.game_itch_upload}}<'

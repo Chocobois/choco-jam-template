@@ -3,7 +3,7 @@
 	"title": "Game Jam Template",
 	"description": "We make game, but faster!",
 	"itch": {
-		"upload": false,
+		"upload": true,
 		"user": "username",
 		"game": "game-name"
 	}
