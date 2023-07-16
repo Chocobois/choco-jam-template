@@ -21,6 +21,7 @@ dist-ssr
 # Editor directories and files
 .vscode/*
 !.vscode/launch.json
+!.vscode/settings.json
 !.vscode/extensions.json
 .idea
 .DS_Store
@@ -43,3 +44,4 @@ src/neutralino.js
 .firebase/
 *.zip
 src/version.json
+neutralino.config.json

@@ -1,25 +1,27 @@
 {
-  "name": "chocobois-jam-template",
-  "version": "0.0.0",
-  "type": "module",
-  "license": "MIT",
-  "scripts": {
-    "start": "vite",
-    "dev": "vite",
-    "build": "rimraf dist && vite build",
-    "postinstall": "neu update"
-  },
-  "devDependencies": {
-    "@neutralinojs/neu": "^9.6.0",
-    "rimraf": "^5.0.1",
-    "typescript": "^5.1.6",
-    "vite": "^4.3.9",
-    "vite-plugin-checker": "^0.6.1",
-    "vite-plugin-zip-pack": "^1.0.6",
-    "vite-tsconfig-paths": "^4.2.0"
-  },
-  "dependencies": {
-    "phaser": "^3.60.0",
-    "phaser3-rex-plugins": "^1.60.3"
-  }
+	"name": "chocobois-jam-template",
+	"version": "0.0.0",
+	"type": "module",
+	"license": "MIT",
+	"scripts": {
+		"start": "vite",
+		"dev": "vite",
+		"build": "rimraf dist && vite build",
+		"postinstall": "vite-node automation/setup.ts"
+	},
+	"dependencies": {
+		"phaser": "^3.60.0",
+		"phaser3-rex-plugins": "^1.60.3"
+	},
+	"devDependencies": {
+		"@neutralinojs/neu": "^9.6.0",
+		"rimraf": "^5.0.1",
+		"terser": "^5.18.2",
+		"typescript": "^5.1.6",
+		"vite": "^4.4.4",
+		"vite-node": "^0.33.0",
+		"vite-plugin-checker": "^0.6.1",
+		"vite-plugin-zip-pack": "^1.0.6",
+		"vite-tsconfig-paths": "^4.2.0"
+	}
 }
