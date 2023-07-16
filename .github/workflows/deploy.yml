@@ -24,6 +24,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Load game.config.json
+        uses: antifree/json-to-variables@v1.0.1
+        with:
+          filename: 'game.config.json'
+          prefix: game
+
       - name: Build project
         run: npm run build
 
@@ -31,7 +37,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/unpacked
+          publish_dir: ./dist/web
 
       - name: Create release
         uses: "marvinpinto/action-automatic-releases@latest"
@@ -41,5 +47,12 @@ jobs:
           prerelease: false
           title: "Game latest build"
           files: |
-            ./dist/chocobois-jam-template-release.zip
             ./dist/game-web.zip
+            ./dist/game-win.zip
+            ./dist/game-mac.dmg
+            ./dist/game-linux.zip
+
+      - name: Test conditional upload
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+        run: echo 'Try env var >${{env.game_itch_upload}}<  >${{env.BUTLER_CREDENTIALS}}<'
