@@ -65,45 +65,45 @@ export class TitleScene extends BaseScene {
 		this.background.y += 4000;
 		this.foreground.y += 1000;
 
-		this.title = this.createText(0.25*this.W, 0.7*this.H, 160, "#000", "Game Title");
+		this.title = this.createText(0.25*this.W, 0.7*this.H, 16, "#000", "Game Title");
 		this.title.setOrigin(0.5);
-		this.title.setStroke("#FFF", 40*8);
-		this.title.setPadding(2*40*8);
+		this.title.setStroke("#FFF", 4*8);
+		this.title.setPadding(2);
 		this.title.setVisible(false);
 		this.title.setAlpha(0);
 
-		this.subtitle = this.createText(0.25*this.W, 0.87*this.H, 120, "#000", "Tap to start");
+		this.subtitle = this.createText(0.25*this.W, 0.87*this.H, 12, "#000", "Tap to start");
 		this.subtitle.setOrigin(0.5);
-		this.subtitle.setStroke("#FFF", 40*3);
-		this.subtitle.setPadding(2*40*2);
+		this.subtitle.setStroke("#FFF", 4*3);
+		this.subtitle.setPadding(2);
 		this.subtitle.setVisible(false);
 		this.subtitle.setAlpha(0);
 
-		this.tap = this.createText(this.CX, this.CY, 140, "#000", "Tap to focus");
+		this.tap = this.createText(this.CX, this.CY, 14, "#000", "Tap to focus");
 		this.tap.setOrigin(0.5);
 		this.tap.setAlpha(-1);
-		this.tap.setStroke("#FFF", 40*4);
-		this.tap.setPadding(2*40*4);
+		this.tap.setStroke("#FFF", 4*4);
+		this.tap.setPadding(2);
 
-		this.version = this.createText(this.W, this.H, 40, "#000", version);
+		this.version = this.createText(this.W, this.H, 4, "#000", version);
 		this.version.setOrigin(1, 1);
 		this.version.setAlpha(-1);
-		this.version.setStroke("#FFF", 10*4);
-		this.version.setPadding(2*40*4);
+		this.version.setStroke("#FFF", 4);
+		this.version.setPadding(2);
 
 		this.credits = this.add.container(0, 0);
 		this.credits.setVisible(false);
 		this.credits.setAlpha(0);
 
-		let credits1 = this.createText(0.6*this.W, 4, 50, "#c2185b", creditsLeft);
-		credits1.setStroke("#FFF", 100);
-		credits1.setPadding(2*100);
+		let credits1 = this.createText(0.65*this.W, 1, 4, "#c2185b", creditsLeft);
+		credits1.setStroke("#FFF", 10);
+		credits1.setPadding(2);
 		credits1.setLineSpacing(0);
 		this.credits.add(credits1);
 
-		let credits2 = this.createText(0.8*this.W, 4, 50, "#c2185b", creditsRight);
-		credits2.setStroke("#FFF", 100);
-		credits2.setPadding(2*100);
+		let credits2 = this.createText(0.85*this.W, 1, 4, "#c2185b", creditsRight);
+		credits2.setStroke("#FFF", 10);
+		credits2.setPadding(2);
 		credits2.setLineSpacing(0);
 		this.credits.add(credits2);
 
@@ -157,7 +157,7 @@ export class TitleScene extends BaseScene {
 		}
 
 
-		this.subtitle.setScale(0.1 + 0.002*Math.sin(5*time/1000));
+		this.subtitle.setScale(1 + 0.02*Math.sin(5*time/1000));
 
 		if (this.isStarting) {
 			this.subtitle.setAlpha(0.6 + 0.4*Math.sin(50*time/1000));

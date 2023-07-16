@@ -57,7 +57,7 @@ export class BaseScene extends Phaser.Scene {
 			fontFamily: "Game Font",
 			fontSize: Math.max(size*10, 1) + "px",
 			color: color
-		}).setLineSpacing(0.4*size).setPadding(2).setScale(0.1);
+		}).setLineSpacing(0.4*size).setPadding(2);
 	}
 
 	// The image keeps its aspect ratio, but is resized to fit within the given dimension
