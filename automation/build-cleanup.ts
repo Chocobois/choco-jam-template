@@ -6,6 +6,7 @@ export default function buildCleanup() {
 	return {
 		name: 'build-cleanup',
 		apply: 'build',
+		enforce: 'post',
 		closeBundle: () => {
 			rimrafSync(build_path);
 		},

@@ -16,8 +16,9 @@ const BuildWinApp = async () => {
 	const data = readFileSync(`${build_path}/${game_dir}-win_x64.exe`);
 	const exe = NtExecutable.from(data);
 	const res = NtExecutableResource.from(exe);
-	const icon = await pngToIco('./src/public/icon.png');
-	const iconFile = Data.IconFile.from(icon);
+	const pngData = readFileSync('./src/public/icon.png');
+	const iconData = await pngToIco(pngData);
+	const iconFile = Data.IconFile.from(iconData);
 
 	Resource.IconGroupEntry.replaceIconsForResource(
 		res.entries,
@@ -33,7 +34,11 @@ const BuildWinApp = async () => {
 export default function buildWinApp() {
 	return {
 		name: 'build-windows-bundle',
-		closeBundle: BuildWinApp,
 		apply: 'build',
+		enforce: 'pre',
+		closeBundle: {
+			handler: BuildWinApp,
+			sequential: true
+		},
 	} as PluginOption;
 }

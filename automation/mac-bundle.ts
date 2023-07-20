@@ -59,7 +59,7 @@ const BuildMacApp = () => {
 export default function buildMacApp() {
 	return {
 		name: 'build-mac-bundle',
-		closeBundle: BuildMacApp,
 		apply: 'build',
+		closeBundle: BuildMacApp,
 	} as PluginOption;
 }

@@ -19,7 +19,7 @@ const BuildWinApp = () => {
 export default function buildWinApp() {
 	return {
 		name: 'build-linux-bundle',
-		closeBundle: BuildWinApp,
 		apply: 'build',
+		closeBundle: BuildWinApp,
 	} as PluginOption;
 }
