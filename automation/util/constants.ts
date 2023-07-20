@@ -1,7 +1,7 @@
 import { execSync } from 'child_process';
-import { team, title } from '../../game.config.json';
+import { team, title, description } from '../../game.config.json';
 
-export { team, title };
+export { team, title, description };
 
 export const git_count = execSync('git rev-list --count HEAD').toString().trim();
 export const git_short = execSync('git rev-parse --short HEAD').toString().trim();
