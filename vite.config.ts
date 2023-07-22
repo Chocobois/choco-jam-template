@@ -3,19 +3,14 @@ import { defineConfig } from 'vite';
 import zip from 'vite-plugin-zip-pack';
 import checker from 'vite-plugin-checker';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import writeGitVersion from './automation/git-version';
+import getGitVersion from './automation/git-version';
 import neuBuild from './automation/neu-build';
 import buildWinApp from './automation/win-bundle';
 import buildMacApp from './automation/mac-bundle';
 import buildLinuxApp from './automation/linux-bundle';
-
-import { title, team, description } from './game.config.json';
 import buildCleanup from './automation/build-cleanup';
 
-const CheckerConfig = {
-	terminal: true,
-	overlay: true,
-};
+import { title, team, description, title_dashed } from './automation/util/constants';
 
 export default () => {
 	process.env.VITE_GAME_TITLE = title;
@@ -27,10 +22,9 @@ export default () => {
 		root: 'src',
 		plugins: [
 			tsconfigPaths(),
-			writeGitVersion(),
+			getGitVersion(),
 			checker({
 				typescript: true,
-				...CheckerConfig,
 			}),
 			neuBuild(),
 			buildWinApp(),
@@ -39,17 +33,17 @@ export default () => {
 			zip({
 				inDir: './dist/web',
 				outDir: './dist',
-				outFileName: 'game-web.zip',
+				outFileName: `${title_dashed}-web.zip`,
 			}),
 			zip({
 				inDir: `./dist/win`,
 				outDir: './dist',
-				outFileName: 'game-win.zip',
+				outFileName: `${title_dashed}-win.zip`,
 			}),
 			zip({
 				inDir: `./dist/linux`,
 				outDir: './dist',
-				outFileName: 'game-linux.zip',
+				outFileName: `${title_dashed}-linux.zip`,
 			}),
 			buildCleanup(),
 		],
