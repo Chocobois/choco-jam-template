@@ -1,6 +1,6 @@
 import { PluginOption } from 'vite';
 import { writeFileSync } from 'fs';
-import { git_count, git_short, git_version, title, team } from './util/constants';
+import { git_count, git_short, git_version, title, team } from './constants';
 
 const WriteGitVersion = () => {
 	writeFileSync('./src/version.json', JSON.stringify({

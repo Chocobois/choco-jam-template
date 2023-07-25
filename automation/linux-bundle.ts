@@ -1,5 +1,5 @@
 import { PluginOption } from 'vite';
-import { title_dashed, game_dir, build_path } from './util/constants';
+import { title_dashed, game_dir, build_path } from './constants';
 import { mkdirSync, copyFileSync } from 'fs';
 
 const BuildWinApp = () => {

@@ -1,4 +1,4 @@
-import { team, title, team_dashed, title_dashed, git_count } from './util/constants';
+import { team, title, team_dashed, title_dashed, git_count } from './constants';
 import neuConf from './neu-template.json';
 import { writeFileSync } from 'fs';
 

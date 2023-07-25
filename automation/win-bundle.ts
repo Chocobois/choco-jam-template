@@ -1,5 +1,5 @@
 import { PluginOption } from 'vite';
-import { title, title_dashed, game_dir, build_path, git_count, description, git_version, team } from './util/constants';
+import { title, title_dashed, game_dir, build_path, git_count, description, git_version, team } from './constants';
 import { mkdirSync, copyFileSync, readFileSync, writeFileSync } from 'fs';
 import { NtExecutable, NtExecutableResource, Data, Resource } from 'resedit';
 import pngToIco from 'png-to-ico';

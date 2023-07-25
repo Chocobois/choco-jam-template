@@ -1,6 +1,6 @@
 import { PluginOption } from 'vite';
 import { team, title, git_count, git_version, team_dashed,
-		title_dashed, game_dir, build_path, year_copyright } from './util/constants';
+		title_dashed, game_dir, build_path, year_copyright } from './constants';
 import { execSync } from 'child_process';
 import { mkdirSync, writeFileSync, copyFileSync, renameSync } from 'fs';
 

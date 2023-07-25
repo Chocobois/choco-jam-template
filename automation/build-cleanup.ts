@@ -1,7 +1,7 @@
 import { PluginOption } from 'vite';
 import { rimrafSync } from 'rimraf';
 import { writeFileSync } from 'fs';
-import { build_path, title_dashed } from './util/constants';
+import { build_path, title_dashed } from './constants';
 
 const BuildCleanup = () => {
 	rimrafSync(build_path);
