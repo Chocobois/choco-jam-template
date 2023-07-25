@@ -45,3 +45,4 @@ src/neutralino.js
 *.zip
 src/version.json
 neutralino.config.json
+__neutralino_globals.js
