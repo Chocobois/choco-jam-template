@@ -1,8 +1,8 @@
 import { execSync } from 'child_process';
 import { platform } from 'os';
-import { team, title, description } from '../game.config.json';
+import { team, title, description, neutralino } from '../game.config.json';
 
-export { team, title, description };
+export { team, title, description, neutralino };
 
 const tryCatch = <T>(fun: () => T, fallback: T): T => {
 	try {

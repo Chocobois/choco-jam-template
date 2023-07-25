@@ -6,5 +6,8 @@
 		"upload": false,
 		"username": "username",
 		"game": "game-name"
+	},
+	"neutralino": {
+		"allow": ["app.exit", "window.center"]
 	}
 }

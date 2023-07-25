@@ -1,4 +1,4 @@
-import { team, title, team_dashed, title_dashed, git_count } from './constants';
+import { team, title, team_dashed, title_dashed, git_count, neutralino } from './constants';
 import neuConf from './neu-template.json';
 import { writeFileSync } from 'fs';
 
@@ -10,6 +10,8 @@ export default function WriteNeuConfig() {
 	if(process.env.NODE_ENV == 'development') {
 		neuConf.tokenSecurity = 'none';
 	}
+
+	neuConf.nativeAllowList = [...neuConf.nativeAllowList, ...neutralino.allow];
 
 	writeFileSync('neutralino.config.json', JSON.stringify(neuConf));
 }
