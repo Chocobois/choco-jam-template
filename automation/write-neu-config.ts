@@ -14,4 +14,5 @@ export default function WriteNeuConfig() {
 	neuConf.nativeAllowList = [...neuConf.nativeAllowList, ...neutralino.allow];
 
 	writeFileSync('neutralino.config.json', JSON.stringify(neuConf));
+	writeFileSync('./src/public/__neutralino_globals.js', '// Dummy file');
 }

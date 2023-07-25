@@ -4,8 +4,8 @@
 	"type": "module",
 	"license": "MIT",
 	"scripts": {
-		"start": "vite",
-		"dev": "vite",
+		"start": "vite-node automation/dev.ts",
+		"dev": "vite-node automation/dev.ts",
 		"dev-neu": "vite-node automation/neu-dev.ts",
 		"build": "rimraf dist && vite build",
 		"postinstall": "vite-node automation/setup.ts"
