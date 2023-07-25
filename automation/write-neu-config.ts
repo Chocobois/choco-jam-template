@@ -7,6 +7,9 @@ export default function WriteNeuConfig() {
 	neuConf.modes.window.title = `${title} by ${team}`;
 	neuConf.cli.binaryName = `${team_dashed}-${title_dashed}`;
 	neuConf.version = `0.0.${git_count}`;
+	if(process.env.NODE_ENV == 'development') {
+		neuConf.tokenSecurity = 'none';
+	}
 
 	writeFileSync('neutralino.config.json', JSON.stringify(neuConf));
 }
