@@ -5,6 +5,7 @@ import checker from 'vite-plugin-checker';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import getGitVersion from './automation/git-version';
 import neuBuild from './automation/neu-build';
+import neuInject from './automation/neu-inject';
 import buildWinApp from './automation/win-bundle';
 import buildMacApp from './automation/mac-bundle';
 import buildLinuxApp from './automation/linux-bundle';
@@ -27,6 +28,7 @@ export default () => {
 				typescript: true,
 			}),
 			neuBuild(),
+			neuInject(),
 			buildWinApp(),
 			buildMacApp(),
 			buildLinuxApp(),

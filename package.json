@@ -10,6 +10,7 @@
 		"postinstall": "vite-node automation/setup.ts"
 	},
 	"dependencies": {
+		"@neutralinojs/lib": "^3.10.0",
 		"phaser": "^3.60.0",
 		"phaser3-rex-plugins": "^1.60.3"
 	},
