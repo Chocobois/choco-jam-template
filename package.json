@@ -6,6 +6,7 @@
 	"scripts": {
 		"start": "vite",
 		"dev": "vite",
+		"dev-neu": "vite-node automation/neu-dev.ts",
 		"build": "rimraf dist && vite build",
 		"postinstall": "vite-node automation/setup.ts"
 	},

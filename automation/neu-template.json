@@ -18,8 +18,8 @@
 			"title": "Chocobois Game Jam Template",
 			"width": 1440,
 			"height": 845,
-			"minWidth": 1440,
-			"minHeight": 845,
+			"minWidth": 960,
+			"minHeight": 570,
 			"fullScreen": false,
 			"alwaysOnTop": false,
 			"icon": "src/public/icon.png",
@@ -34,6 +34,10 @@
 	"cli": {
 		"binaryName": "chocobois-jam-template",
 		"resourcesPath": "/dist/",
-		"binaryVersion": "4.12.0"
+		"binaryVersion": "4.12.0",
+		"frontendLibrary": {
+			"patchFile": "/src/index.html",
+			"devUrl": "http://127.0.0.1:5173/"
+		}
 	}
 }
