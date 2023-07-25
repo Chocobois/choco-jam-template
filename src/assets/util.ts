@@ -1,4 +1,4 @@
-export interface Asset {
+export interface Image {
 	key: string;
 	path: string;
 }
@@ -18,7 +18,7 @@ export interface Audio {
 }
 
 const imageGlob = import.meta.glob('./images/**/*.png', {as: 'url', eager: true});
-export const image = (path: string, key: string): Asset => {
+export const image = (path: string, key: string): Image => {
 	return { key, path: imageGlob[`./images/${path}.png`] };
 }
 
@@ -38,8 +38,8 @@ export const sound = (path: string, key: string, volume?: number, rate?: number)
 
 const fontGlob = import.meta.glob('./fonts/**/*.ttf', {as: 'url', eager: true});
 export const loadFont = async (path: string, name: string) => {
-    const face = new FontFace(name, `url(${fontGlob[`./fonts/${path}.ttf`]})`, {style: 'normal', weight: '400'});
-    await face.load();
-    document.fonts.add(face);
+	const face = new FontFace(name, `url(${fontGlob[`./fonts/${path}.ttf`]})`, {style: 'normal', weight: '400'});
+	await face.load();
+	document.fonts.add(face);
 }
 

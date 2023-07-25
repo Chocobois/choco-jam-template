@@ -1,8 +1,8 @@
-import { Asset, SpriteSheet, Audio } from './util';
+import { Image, SpriteSheet, Audio } from './util';
 import { image, sound, music, loadFont, spritesheet } from './util';
 
 /* Images */
-const images: Asset[] = [
+const images: Image[] = [
 	// Titlescreen
 	image('titlescreen/foreground', 'title_foreground'),
 	image('titlescreen/background', 'title_background'),

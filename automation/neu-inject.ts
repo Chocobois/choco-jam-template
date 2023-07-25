@@ -11,7 +11,6 @@ export default function neuInject(): PluginOption {
                     src: '__neutralino_globals.js'
                 },
                 injectTo: 'head-prepend',
-
             }]
         })
 	};
