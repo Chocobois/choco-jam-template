@@ -4,6 +4,7 @@ import zip from 'vite-plugin-zip-pack';
 import checker from 'vite-plugin-checker';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import getGitVersion from './automation/git-version';
+import preImageOptimizer from './automation/pre-image-optimizer';
 import neuBuild from './automation/neu-build';
 import neuInject from './automation/neu-inject';
 import buildWinApp from './automation/win-bundle';
@@ -27,6 +28,7 @@ export default () => {
 			checker({
 				typescript: true,
 			}),
+			preImageOptimizer(),
 			neuBuild(),
 			neuInject(),
 			buildWinApp(),
