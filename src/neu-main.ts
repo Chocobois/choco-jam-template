@@ -8,7 +8,7 @@ const NeutralinoLoad = (Neutralino: Neutralino) => {
     });
 }
 
-if((window as any).NL_TOKEN) {
+if( window.NL_TOKEN ) {
     Neutralino.init();
     NeutralinoLoad(Neutralino);
 }
