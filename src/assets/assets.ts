@@ -3,10 +3,23 @@ import { image, sound, music, loadFont, spritesheet } from './util';
 
 /* Images */
 const images: Image[] = [
+	// Backgrounds
+	image('backgrounds/background', 'background'),
+
+	// Characters
+	image('characters/player', 'player'),
+
+	// Items
+	image('items/coin', 'coin'),
+
+	// UI
+	image('ui/hud', 'hud'),
+
 	// Titlescreen
-	image('titlescreen/foreground', 'title_foreground'),
+	image('titlescreen/sky', 'title_sky'),
 	image('titlescreen/background', 'title_background'),
-	image('titlescreen/skybackground', 'title_skybackground')
+	image('titlescreen/foreground', 'title_foreground'),
+	image('titlescreen/character', 'title_character'),
 ];
 
 /* Spritesheets */
@@ -21,7 +34,8 @@ const audios: Audio[] = [
 	sound('tree/rustle', 't_rustle', 0.5),
 ];
 
-await loadFont('DynaPuff-Medium', 'Game Font');
+/* Fonts */
+await loadFont('Sketch', 'Game Font');
 
 export {
 	images,
