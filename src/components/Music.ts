@@ -1,4 +1,4 @@
-import MusicData, {MusicKey} from "@/components/MusicData";
+import MusicData, { MusicKey } from "@/components/MusicData";
 
 export class Music extends Phaser.Sound.WebAudioSound {
 	public _prevBarTime: number;
@@ -12,7 +12,7 @@ export class Music extends Phaser.Sound.WebAudioSound {
 	public start: number;
 	public loopSum: number;
 
-	constructor(scene: any, myKey: MusicKey, config={}) {
+	constructor(scene: any, myKey: MusicKey, config = {}) {
 		super(scene.sound, myKey, config);
 		scene.sound.sounds.push(this);
 		this.myKey = myKey;
@@ -30,8 +30,7 @@ export class Music extends Phaser.Sound.WebAudioSound {
 			this.start = custom.start;
 			this.end = custom.end;
 			this.setLoop(true);
-		}
-		else {
+		} else {
 			this.start = this.offset;
 			this.end = this.duration;
 			this.setLoop(false);
@@ -50,20 +49,19 @@ export class Music extends Phaser.Sound.WebAudioSound {
 				if (this.currentTime > this.end) {
 					this.setSeek(this.currentTime - (this.end - this.start));
 					this.loopSum += this.end - this.start;
-					this.emit('loop');
+					this.emit("loop");
 				}
 			}
 
 			let barTime = this.getBarTime();
 			if (barTime >= 0) {
 				if (Math.floor(barTime) != Math.floor(this._prevBarTime)) {
-					this.emit('bar', Math.floor(barTime));
+					this.emit("bar", Math.floor(barTime));
 				}
 			}
 			this._prevBarTime = barTime;
 		}
 	}
-
 
 	getBarTime() {
 		let time = this.currentTime - this.offset;
@@ -74,7 +72,6 @@ export class Music extends Phaser.Sound.WebAudioSound {
 		return Math.floor(this.getBarTime());
 	}
 
-
 	get currentTime() {
 		return this.seek;
 	}
@@ -84,6 +81,6 @@ export class Music extends Phaser.Sound.WebAudioSound {
 	}
 
 	get barTime() {
-		return (this.totalTime - this.offset) / this.speed
+		return (this.totalTime - this.offset) / this.speed;
 	}
 }
