@@ -7,6 +7,11 @@ import { mkdirSync, writeFileSync, copyFileSync, renameSync } from 'fs';
 const BuildMacApp = () => {
 	console.log(`Packaging Mac dmg...`);
 
+	const bootstrapper = `#!/usr/bin/env bash
+MACOS="\$( cd -- "$( dirname -- "\${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+CONTENTS="$(dirname "$MACOS")"
+exec "\${MACOS}/game" --path="\${CONTENTS}/Resources" --enable-extensions=true`;
+
 	const plist = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -14,7 +19,7 @@ const BuildMacApp = () => {
   <key>NSHumanReadableCopyright</key>
   <string>${title} ${git_version} © ${team} ${year_copyright}</string>
   <key>CFBundleExecutable</key>
-  <string>game</string>
+  <string>bootstrapper</string>
   <key>CFBundleIdentifier</key>
   <string>com.${team_dashed}.${title_dashed}</string>
   <key>CFBundleName</key>
@@ -42,9 +47,10 @@ const BuildMacApp = () => {
 	mkdirSync(`${out_dir}/Contents/MacOS`);
 	mkdirSync(`${out_dir}/Contents/Resources`);
 
+	writeFileSync(`${out_dir}/Contents/MacOS/bootstrapper`, bootstrapper);
 	writeFileSync(`${out_dir}/Contents/info.plist`, plist);
 	copyFileSync(`${build_path}/${game_dir}-mac_universal`, `${out_dir}/Contents/MacOS/game`);
-	copyFileSync(`${build_path}/resources.neu`, `${out_dir}/Contents/MacOS/resources.neu`);
+	copyFileSync(`${build_path}/resources.neu`, `${out_dir}/Contents/Resources/resources.neu`);
 	copyFileSync(`./src/public/icon.png`, `${out_dir}/Contents/Resources/icon.png`);
 	renameSync(out_dir, `${out_dir}.app`);
 
