@@ -1,3 +1,14 @@
+export interface TextStyle {
+	fontFamily?: string;
+	x?: number;
+	y?: number;
+	size?: number;
+	weight?: number;
+	color?: string;
+	alpha?: number;
+	text?: string;
+}
+
 export class BaseScene extends Phaser.Scene {
 	protected flashRect: Phaser.GameObjects.Rectangle | null;
 	protected cameraShakeValue: number;
@@ -56,19 +67,24 @@ export class BaseScene extends Phaser.Scene {
 	}
 
 	// Creates Phaser text object
-	createText(
-		x: number = 0,
-		y: number = 0,
-		size: number = 20,
-		color: string = "#FFF",
-		text: string = ""
-	): Phaser.GameObjects.Text {
+	addText({
+		fontFamily = "Lato",
+		x = 0,
+		y = 0,
+		size = 12,
+		weight = 500,
+		color = "#FFFFFF",
+		alpha = 1.0,
+		text = "",
+	}: TextStyle): Phaser.GameObjects.Text {
 		return this.add
 			.text(x, y, text, {
-				fontFamily: "Game Font",
+				fontFamily,
 				fontSize: Math.max(size, 1) + "px",
+				fontStyle: weight.toString(),
 				color: color,
 			})
+			.setAlpha(alpha)
 			.setPadding(2);
 	}
 
