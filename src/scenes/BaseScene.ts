@@ -68,7 +68,7 @@ export class BaseScene extends Phaser.Scene {
 
 	// Creates Phaser text object
 	addText({
-		fontFamily = "Lato",
+		fontFamily = "Sketch",
 		x = 0,
 		y = 0,
 		size = 12,
