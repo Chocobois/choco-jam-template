@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"defaultMode": "window",
 	"port": 0,
-	"documentRoot": "/dist/web",
+	"documentRoot": "/dist/web/",
 	"url": "/",
 	"enableServer": true,
 	"enableNativeAPI": true,
@@ -28,16 +28,22 @@
 			"maximize": false,
 			"hidden": false,
 			"resizable": true,
-			"exitProcessOnClose": true
+			"exitProcessOnClose": false,
+			"useSavedState": false
 		}
 	},
 	"cli": {
 		"binaryName": "chocobois-jam-template",
 		"resourcesPath": "/dist/",
-		"binaryVersion": "4.12.0",
+		"binaryVersion": "4.14.1",
+		"clientVersion": "3.12.0",
 		"frontendLibrary": {
-			"patchFile": "/src/index.html",
-			"devUrl": "http://127.0.0.1:5173/"
+		  "patchFile": "/src/index.html",
+		  "devUrl": "http://127.0.0.1:5173",
+		  "projectPath": "/",
+		  "initCommand": "echo",
+		  "devCommand": "echo",
+		  "buildCommand": "echo"
 		}
 	}
 }
