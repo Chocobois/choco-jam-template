@@ -9,8 +9,8 @@
       "type": "node",
       "serverReadyAction": {
         "action": "debugWithChrome",
-        "pattern": "127.0.0.1:.*m([0-9]+)",
-        "uriFormat": "http://127.0.0.1:%s"
+        "pattern": "localhost:.*m([0-9]+)",
+        "uriFormat": "http://localhost:%s"
       }
     }
   ]
