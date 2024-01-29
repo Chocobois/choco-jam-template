@@ -12,7 +12,7 @@ const tryCatch = <T>(fun: () => T, fallback: T): T => {
 const getGlobalsPath = () => {
 	const isDev = process.env.NODE_ENV == 'development';
 	const authInfo = JSON.parse(tryCatch(() => readFileSync('.tmp/auth_info.json').toString(), '{}'));
-	const port = authInfo.port;
+	const port = authInfo.nlPort;
 	return `${(isDev && port) ? `http://localhost:${port}/` : ''}__neutralino_globals.js`
 }
 
