@@ -1,11 +1,11 @@
 {
 	"team": "Chocobois",
-	"title": "Game Jam Template",
+	"title": "Skeleware in Delawere",
 	"description": "We make game, but faster!",
 	"itch": {
-		"upload": false,
-		"username": "username",
-		"game": "game-name"
+		"upload": true,
+		"username": "golen",
+		"game": "skeleware"
 	},
 	"neutralino": {
 		"allow": ["app.exit", "window.center"]
