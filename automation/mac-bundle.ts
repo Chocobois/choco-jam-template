@@ -4,7 +4,7 @@ import { team, title, git_count, git_version, team_dashed,
 import { execSync } from 'child_process';
 import { mkdirSync, writeFileSync, copyFileSync, renameSync } from 'fs';
 
-const BuildMacApp = () => {
+const BundleMacApp = () => {
 	console.log(`Packaging Mac dmg...`);
 
 	const bootstrapper = `#!/usr/bin/env bash
@@ -49,8 +49,8 @@ exec "\${MACOS}/game" --path="\${CONTENTS}/Resources" --enable-extensions=true`;
 
 	writeFileSync(`${out_dir}/Contents/MacOS/bootstrapper`, bootstrapper);
 	writeFileSync(`${out_dir}/Contents/info.plist`, plist);
-	copyFileSync(`${build_path}/${game_dir}-mac_universal`, `${out_dir}/Contents/MacOS/game`);
-	copyFileSync(`${build_path}/resources.neu`, `${out_dir}/Contents/Resources/resources.neu`);
+	copyFileSync(`bin/neutralino-mac_universal`, `${out_dir}/Contents/MacOS/game`);
+	copyFileSync(`bin/resources.neu`, `${out_dir}/Contents/Resources/resources.neu`);
 	copyFileSync(`./src/public/icon.png`, `${out_dir}/Contents/Resources/icon.png`);
 	renameSync(out_dir, `${out_dir}.app`);
 
@@ -61,10 +61,10 @@ exec "\${MACOS}/game" --path="\${CONTENTS}/Resources" --enable-extensions=true`;
 	}
 };
 
-export default function buildMacApp() {
+export default function bundleMacApp() {
 	return {
 		name: 'build-mac-bundle',
 		apply: 'build',
-		closeBundle: BuildMacApp,
+		closeBundle: BundleMacApp,
 	} as PluginOption;
 }

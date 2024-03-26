@@ -4,16 +4,16 @@ import { mkdirSync, copyFileSync, readFileSync, writeFileSync } from 'fs';
 import { NtExecutable, NtExecutableResource, Data, Resource } from 'resedit';
 import pngToIco from 'png-to-ico';
 
-const BuildWinApp = async () => {
+const BundleWinApp = async () => {
 	console.log(`Packaging Windows exe...`);
 
 	const out_dir = `./dist/win/${title_dashed}`;
 
 	mkdirSync('./dist/win');
 	mkdirSync(out_dir);
-	copyFileSync(`${build_path}/resources.neu`, `${out_dir}/resources.neu`);
+	copyFileSync(`bin/resources.neu`, `${out_dir}/resources.neu`);
 
-	const data = readFileSync(`${build_path}/${game_dir}-win_x64.exe`);
+	const data = readFileSync(`bin/neutralino-win_x64.exe`);
 	const exe = NtExecutable.from(data);
 	const res = NtExecutableResource.from(exe);
 
@@ -41,13 +41,13 @@ const BuildWinApp = async () => {
 	writeFileSync(`${out_dir}/${title}.exe`, Buffer.from(exe.generate()));
 };
 
-export default function buildWinApp() {
+export default function bundleWinApp() {
 	return {
 		name: 'build-windows-bundle',
 		apply: 'build',
 		enforce: 'pre',
 		closeBundle: {
-			handler: BuildWinApp,
+			handler: BundleWinApp,
 			sequential: true
 		},
 	} as PluginOption;

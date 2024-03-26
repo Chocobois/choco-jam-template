@@ -7,9 +7,9 @@ import getGitVersion from './automation/git-version';
 import preImageOptimizer from './automation/pre-image-optimizer';
 import neuBuild from './automation/neu-build';
 import neuInject from './automation/neu-inject';
-import buildWinApp from './automation/win-bundle';
-import buildMacApp from './automation/mac-bundle';
-import buildLinuxApp from './automation/linux-bundle';
+import bundleWinApp from './automation/win-bundle';
+import bundleMacApp from './automation/mac-bundle';
+import bundleLinuxApp from './automation/linux-bundle';
 import buildCleanup from './automation/build-cleanup';
 
 import { title, team, description, title_dashed } from './automation/constants';
@@ -29,11 +29,11 @@ export default () => {
 				typescript: true,
 			}),
 			preImageOptimizer(),
-			neuBuild(),
 			neuInject(),
-			buildWinApp(),
-			buildMacApp(),
-			buildLinuxApp(),
+			neuBuild(),
+			bundleWinApp(),
+			bundleMacApp(),
+			bundleLinuxApp(),
 			zip({
 				inDir: './dist/web',
 				outDir: './dist',
