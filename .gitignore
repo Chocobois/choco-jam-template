@@ -8,6 +8,8 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Ignore lock files
+# Nobody uses the same package manager
+package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
