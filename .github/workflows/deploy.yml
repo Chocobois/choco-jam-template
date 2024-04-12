@@ -17,15 +17,15 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install dependencies
         run: npm install && sudo apt install genisoimage
 
       - name: Load game.config.json
-        uses: antifree/json-to-variables@v1.0.1
+        uses: antifree/json-to-variables@v1.1.2
         with:
           filename: 'game.config.json'
           prefix: game
@@ -34,13 +34,13 @@ jobs:
         run: npm run build
 
       - name: Load meta.json
-        uses: antifree/json-to-variables@v1.0.1
+        uses: antifree/json-to-variables@v1.1.2
         with:
           filename: 'dist/meta.json'
           prefix: meta
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/web
