@@ -1,5 +1,5 @@
 import * as Neutralino from '@neutralinojs/lib';
-type Neutralino = typeof import('@neutralinojs/lib');
+type Neutralino = typeof Neutralino;
 
 const NeutralinoLoad = (Neutralino: Neutralino) => {
     Neutralino.window.center();

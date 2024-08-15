@@ -22,13 +22,13 @@
 		"resedit": "^2.0.2",
 		"rimraf": "^6.0.1",
 		"sharp": "^0.33.4",
-		"terser": "^5.31.3",
+		"terser": "^5.31.6",
 		"typescript": "^5.5.4",
-		"vite": "^5.3.5",
+		"vite": "^5.4.1",
 		"vite-node": "^2.0.5",
 		"vite-plugin-checker": "^0.7.2",
 		"vite-plugin-image-optimizer": "^1.1.8",
-		"vite-plugin-zip-pack": "^1.2.3",
-		"vite-tsconfig-paths": "^4.3.2"
+		"vite-plugin-zip-pack": "^1.2.4",
+		"vite-tsconfig-paths": "^5.0.1"
 	}
 }
