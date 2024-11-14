@@ -5,7 +5,7 @@ We make game, but faster
 ## Quick start
 ### Prerequisites
 * Git installed.
-* Node 18+ installed.
+* Node 20+ installed.
 
 ### Steps
 1. Clone the repository
@@ -29,7 +29,7 @@ This assumes you have VS Code and Chrome installed
 
 ## Deploying
 ### GitHub
-The repository is configured to automatically deploy to Github Pages, you just have to change a setting on the repository to deploy from a branch and set the deploy branch to `gh-pages`.
+The repository is configured to automatically deploy to Github Pages, you just have to set `GitHub Actions` as the Build and Deployment source setting in the repo Pages settings.
 
 It will also create new downloads under releases.
 ### Itch
