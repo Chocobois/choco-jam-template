@@ -35,6 +35,7 @@ dist-ssr
 bin/
 src/neutralino.js
 .tmp
+.storage
 
 # Uncompressed music
 *.wav
