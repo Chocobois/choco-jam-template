@@ -56,9 +56,6 @@ export default function bundleWinApp() {
     name: "build-windows-bundle",
     apply: "build",
     enforce: "pre",
-    closeBundle: {
-      handler: BundleWinApp,
-      sequential: true,
-    },
+    closeBundle: BundleWinApp,
   } as PluginOption;
 }
