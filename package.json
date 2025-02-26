@@ -11,22 +11,22 @@
     "postinstall": "vite-node scripts/setup.ts"
   },
   "dependencies": {
-    "@neutralinojs/lib": "^5.5.0",
-    "phaser": "^3.87.0",
-    "phaser3-rex-plugins": "^1.80.12"
+    "@neutralinojs/lib": "^5.6.0",
+    "phaser": "^3.88.2",
+    "phaser3-rex-plugins": "^1.80.13"
   },
   "devDependencies": {
-    "@electron/asar": "^3.2.17",
-    "@neutralinojs/neu": "^11.3.0",
+    "@electron/asar": "^3.3.1",
+    "@neutralinojs/neu": "^11.3.1",
     "png2icons": "^2.0.1",
     "resedit": "^2.0.3",
     "rimraf": "^6.0.1",
     "sharp": "^0.33.5",
-    "terser": "^5.37.0",
-    "typescript": "^5.7.2",
-    "vite": "^6.0.3",
-    "vite-node": "^2.1.8",
-    "vite-plugin-checker": "^0.8.0",
+    "terser": "^5.39.0",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0",
+    "vite-node": "^3.0.4",
+    "vite-plugin-checker": "^0.9.0",
     "vite-plugin-image-optimizer": "^1.1.8",
     "vite-plugin-zip-pack": "^1.2.4",
     "vite-tsconfig-paths": "^5.1.4"
