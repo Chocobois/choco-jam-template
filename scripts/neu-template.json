@@ -22,7 +22,7 @@
 			"minHeight": 570,
 			"fullScreen": false,
 			"alwaysOnTop": false,
-			"icon": "src/public/icon.png",
+			"icon": "/src/public/icon.png",
 			"enableInspector": false,
 			"borderless": false,
 			"maximize": false,
