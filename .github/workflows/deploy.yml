@@ -37,7 +37,7 @@ jobs:
         run: npm install && sudo apt install genisoimage
 
       - name: Load game.config.json
-        uses: antifree/json-to-variables@v1.1.2
+        uses: antifree/json-to-variables@v1.2.0
         with:
           filename: "game.config.json"
           prefix: game
@@ -46,7 +46,7 @@ jobs:
         run: npm run build
 
       - name: Load meta.json
-        uses: antifree/json-to-variables@v1.1.2
+        uses: antifree/json-to-variables@v1.2.0
         with:
           filename: "dist/meta.json"
           prefix: meta
@@ -75,7 +75,7 @@ jobs:
 
       - name: Upload to Itch
         if: ${{env.game_itch_upload  == 'true'}}
-        uses: Ayowel/butler-to-itch@v1.0.0
+        uses: Ayowel/butler-to-itch@v1.2.0
         with:
           butler_key: ${{ secrets.BUTLER_CREDENTIALS }}
           itch_user: ${{ env.game_itch_username }}
