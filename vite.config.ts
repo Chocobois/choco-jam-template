@@ -53,6 +53,7 @@ export default () => {
     ],
     build: {
       outDir: "../dist/web",
+      emptyOutDir: false,
       chunkSizeWarningLimit: 4096,
       assetsInlineLimit: 0,
       target: "ES2022",
