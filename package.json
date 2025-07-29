@@ -11,13 +11,13 @@
     "postinstall": "vite-node scripts/setup.ts"
   },
   "dependencies": {
-    "@neutralinojs/lib": "^5.6.0",
+    "@neutralinojs/lib": "^6.0.0",
     "phaser": "^3.88.2",
     "phaser3-rex-plugins": "^1.80.13"
   },
   "devDependencies": {
     "@electron/asar": "^3.3.1",
-    "@neutralinojs/neu": "^11.3.1",
+    "@neutralinojs/neu": "^11.5.0",
     "png2icons": "^2.0.1",
     "resedit": "^2.0.3",
     "rimraf": "^6.0.1",

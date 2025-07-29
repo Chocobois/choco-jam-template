@@ -35,6 +35,7 @@
 	"cli": {
 		"binaryName": "chocobois-jam-template",
 		"resourcesPath": "/dist/",
+		"binaryVersion": "6.0.0",
 		"frontendLibrary": {
 		  "patchFile": "/src/index.html",
 		  "devUrl": "http://localhost:5173",
