@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@neutralinojs/lib": "6.0.0",
+    "mobx": "^6.13.7",
     "phaser": "^3.90.0",
     "phaser3-rex-plugins": "^1.80.16"
   },
