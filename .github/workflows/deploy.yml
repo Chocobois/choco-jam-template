@@ -31,13 +31,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Install dependencies
         run: npm install && sudo apt install genisoimage
 
       - name: Load game.config.json
-        uses: antifree/json-to-variables@v1.2.0
+        uses: antifree/json-to-variables@v1.3.0
         with:
           filename: "game.config.json"
           prefix: game
@@ -46,7 +46,7 @@ jobs:
         run: npm run build
 
       - name: Load meta.json
-        uses: antifree/json-to-variables@v1.2.0
+        uses: antifree/json-to-variables@v1.3.0
         with:
           filename: "dist/meta.json"
           prefix: meta
