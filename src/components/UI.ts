@@ -1,5 +1,5 @@
 import { GameScene } from "@/scenes/GameScene";
-import { score } from "@/state/ClickState";
+import { score } from "@/state/ScoreState";
 import { autorun } from "mobx";
 
 export class UI extends Phaser.GameObjects.Container {

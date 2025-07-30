@@ -1,5 +1,5 @@
 import { GameScene } from "@/scenes/GameScene";
-import { score } from "@/state/ClickState";
+import { score } from "@/state/ScoreState";
 
 const ACCELERATION = 150;
 const MAX_SPEED = 400;
