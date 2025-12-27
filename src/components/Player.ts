@@ -1,6 +1,9 @@
 import { GameScene } from "@/scenes/GameScene";
+import { WeaponDisplay } from "./WeaponDisplay";
+import { Bullet } from "./WeaponFunctions/Bullet";
+import { Weapon } from "./WeaponFunctions/Weapon";
 
-const ACCELERATION = 150;
+const ACCELERATION = 250;
 const MAX_SPEED = 400;
 const FRICTION = 0.7;
 const TAPPING_TIMER = 200; // ms
@@ -9,12 +12,16 @@ console.assert(
 	"Max speed unreachable"
 );
 
+//
+//
+
 export class Player extends Phaser.GameObjects.Container {
 	public scene: GameScene;
 
 	// Sprites
 	private spriteSize: number;
 	private sprite: Phaser.GameObjects.Sprite;
+	private inventory: number;
 	private tween: Phaser.Tweens.Tween;
 
 	// Controls
@@ -25,7 +32,20 @@ export class Player extends Phaser.GameObjects.Container {
 	private inputVec: Phaser.Math.Vector2; // Just used for keyboard -> vector
 	private touchPos: Phaser.Math.Vector2;
 	public velocity: Phaser.Math.Vector2;
+	public radius: number = 100;
 	private border: { [key: string]: number };
+	private hbox: Phaser.GameObjects.Sprite;
+	private wpDisp: WeaponDisplay;
+	private ttText: Phaser.GameObjects.Text;
+	private fRad: number = 144;
+	private firing: boolean = false;
+	private cd: number = 0;
+	private maxCD: number = 250;
+	private gfx: Phaser.GameObjects.Graphics;
+
+	public loadout: Weapon[] = [
+	];
+	public activeWeapon: number = 0;
 
 	constructor(scene: GameScene, x: number, y: number) {
 		super(scene, x, y);
@@ -34,11 +54,33 @@ export class Player extends Phaser.GameObjects.Container {
 
 		/* Sprite */
 		this.spriteSize = 200;
-		this.sprite = this.scene.add.sprite(0, 0, "player");
-		this.sprite.setOrigin(0.5, 1.0);
-		this.sprite.y += this.spriteSize / 2;
-		this.sprite.setScale(this.spriteSize / this.sprite.width);
+		this.sprite = this.scene.add.sprite(0, 0, "turretbase");
+		this.hbox = this.scene.add.sprite(0, 0, "heart");
+		this.sprite.setOrigin(0.5, 0.5);
+		this.hbox.setOrigin(0.5, 0.5);
+		//this.sprite.y += this.spriteSize / 2;
+		//this.sprite.setScale(this.spriteSize / this.sprite.width);
 		this.add(this.sprite);
+		this.add(this.hbox);
+		this.wpDisp = new WeaponDisplay(scene,0,0,this);
+		this.add(this.wpDisp);
+		this.wpDisp.setDepth(10);
+		this.gfx = this.scene.add.graphics();
+		this.add(this.gfx);
+		this.gfx.setDepth(15);
+
+		this.loadout = [
+		]
+
+		this.ttText = this.scene.addText({
+			x: 0,
+			y: -160,
+			size: 40,
+			color: "#FFFFFF",
+			text: "",
+		});
+		this.ttText.setOrigin(0.5,0.5);
+		this.add(this.ttText);
 
 		/* Controls */
 		if (this.scene.input.keyboard) {
@@ -51,10 +93,26 @@ export class Player extends Phaser.GameObjects.Container {
 				down2: "Down",
 				left2: "Left",
 				right2: "Right",
+				scrollback: "Q",
+				scrollforward: "E",
+				tracer: "T",
+				cleartracer: "T",
 			});
 			this.scene.input.keyboard
 				.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
 				.on("down", this.doABarrelRoll, this);
+			this.scene.input.keyboard
+				.addKey(Phaser.Input.Keyboard.KeyCodes.E)
+				.on("down", this.scrollForward, this);
+			this.scene.input.keyboard
+				.addKey(Phaser.Input.Keyboard.KeyCodes.Q)
+				.on("down", this.scrollBackward, this);
+			this.scene.input.keyboard
+				.addKey(Phaser.Input.Keyboard.KeyCodes.T)
+				.on("down", this.toggleTracer, this);
+			this.scene.input.keyboard
+				.addKey(Phaser.Input.Keyboard.KeyCodes.Y)
+				.on("down", this.clearTracer, this);
 		}
 		this.isTouched = false;
 		this.isTapped = false;
@@ -63,20 +121,77 @@ export class Player extends Phaser.GameObjects.Container {
 		this.touchPos = new Phaser.Math.Vector2(0, 0);
 		this.velocity = new Phaser.Math.Vector2(0, 0);
 		this.border = {
-			left: 100,
-			right: scene.W - 100,
-			top: 100,
-			bottom: scene.H - 100,
+			left: -1920,
+			right: 1920,
+			top: -1080,
+			bottom: 1080,
 		};
 	}
 
+	setDefaultLoadout(){
+		this.loadout = [
+			new Weapon(this.scene, this.scene.handler.getParams(0)),
+			new Weapon(this.scene, this.scene.handler.getParams(1)),
+			new Weapon(this.scene, this.scene.handler.getParams(7)),
+		]
+	}
+
 	update(time: number, delta: number) {
+
+		this.gfx.clear();
+		/*
+		this.gfx.fillStyle(0x00FFFF,0.75);
+		this.gfx.beginPath();
+		this.gfx.slice(0,0,100,0,360,false,0.005);
+		this.gfx.closePath();
+		this.gfx.fillPath();
+		*/
+
+		this.ttText.setText("Position: " + this.x + ", " + this.y );
+
+        const pointer = this.scene.input.activePointer;
+        const worldX = this.scene.cameras.main.getWorldPoint(pointer.x, pointer.y).x;
+        const worldY = this.scene.cameras.main.getWorldPoint(pointer.x, pointer.y).y;
+		let a = Math.atan2((worldY-this.y),(worldX-this.x));
+		this.wpDisp.update(time,delta,a);
 		// Movement
 		this.handleInput();
+
+		if(this.cd > 0){
+			this.cd -= delta;
+			if(this.cd <= 0){
+				this.cd = 0;
+			}
+		}
+		if((this.loadout.length > 0)) {
+			this.loadout[this.activeWeapon].update(time,delta);
+		}
+		if(this.firing) {
+			this.scene.handler.shoot(a,this.getActiveWeapon());
+				/*
+				ofs = Phaser.Math.DegToRad(-25+(Math.random()*50));
+				this.scene.addBullet(new Bullet(this.scene,this.x+(this.fRad*Math.cos(a)), this.y+(this.fRad*Math.sin(a)),10000,a+ofs));
+				ofs = Phaser.Math.DegToRad(-25+(Math.random()*50));
+				this.scene.addBullet(new Bullet(this.scene,this.x+(this.fRad*Math.cos(a)), this.y+(this.fRad*Math.sin(a)),10000,a+ofs));
+				ofs = Phaser.Math.DegToRad(-25+(Math.random()*50));
+				this.scene.addBullet(new Bullet(this.scene,this.x+(this.fRad*Math.cos(a)), this.y+(this.fRad*Math.sin(a)),10000,a+ofs));
+				ofs = Phaser.Math.DegToRad(-25+(Math.random()*50));
+				this.scene.addBullet(new Bullet(this.scene,this.x+(this.fRad*Math.cos(a)), this.y+(this.fRad*Math.sin(a)),10000,a+ofs));
+				ofs = Phaser.Math.DegToRad(-25+(Math.random()*50));
+				this.scene.addBullet(new Bullet(this.scene,this.x+(this.fRad*Math.cos(a)), this.y+(this.fRad*Math.sin(a)),10000,a+ofs));
+				ofs = Phaser.Math.DegToRad(-25+(Math.random()*50));
+				this.scene.addBullet(new Bullet(this.scene,this.x+(this.fRad*Math.cos(a)), this.y+(this.fRad*Math.sin(a)),10000,a+ofs));
+
+				*/
+		}
 
 		this.inputVec.limit(1);
 		// this.inputVec.normalize();
 		this.inputVec.scale(ACCELERATION);
+
+		if(!((this.inputVec.x == 0) && (this.inputVec.y == 0))){
+			this.sprite.setAngle((180/Math.PI)*Math.atan2(this.inputVec.y,this.inputVec.x));
+		}
 
 		if (this.isTapped) {
 			this.tappedTimer -= delta;
@@ -93,6 +208,40 @@ export class Player extends Phaser.GameObjects.Container {
 		this.y += (this.velocity.y * delta) / 1000;
 
 		// Border collision
+		this.checkBounds();
+
+		// Animation (Change to this.sprite.setScale if needed)
+		const squish = 1.0 + 0.02 * Math.sin((6 * time) / 1000);
+		this.setScale(1.0, squish);
+	}
+
+	scrollForward(){
+		this.loadout[this.activeWeapon].reset();
+		this.activeWeapon++;
+		if(this.activeWeapon > 2){
+			this.activeWeapon = 0;
+		}
+		if(this.loadout[this.activeWeapon].loadTime > 0){
+			this.scene.sound.play("start_reload", {volume:0.75});	
+		}
+
+		this.scene.refreshGUI();
+	}
+
+	scrollBackward(){
+		this.loadout[this.activeWeapon].reset();
+		this.activeWeapon--;
+		if(this.activeWeapon < 0){
+			this.activeWeapon = 2;
+		}
+		if(this.loadout[this.activeWeapon].loadTime > 0){
+			this.scene.sound.play("start_reload", {volume:0.75});	
+		}
+
+		this.scene.refreshGUI();
+	}
+
+	checkBounds() {
 		if (this.x < this.border.left) {
 			this.x = this.border.left;
 		}
@@ -105,10 +254,6 @@ export class Player extends Phaser.GameObjects.Container {
 		if (this.y > this.border.bottom) {
 			this.y = this.border.bottom;
 		}
-
-		// Animation (Change to this.sprite.setScale if needed)
-		const squish = 1.0 + 0.02 * Math.sin((6 * time) / 1000);
-		this.setScale(1.0, squish);
 	}
 
 	handleInput() {
@@ -172,6 +317,31 @@ export class Player extends Phaser.GameObjects.Container {
 			Phaser.Math.Distance.Between(this.x, this.y, x, y) <
 			this.spriteSize
 		);
+	}
+
+	toggleTracer(){
+		this.scene.toggleTracer();
+	}
+
+	clearTracer(){
+		this.scene.clearTracers();
+	}
+
+	fire(){
+		this.firing = true;
+	}
+
+	unfire(){
+		this.firing = false;
+	}
+
+
+	getActiveWeapon(): Weapon{
+		return this.loadout[this.activeWeapon];
+	}
+
+	renderWeapon(){
+
 	}
 
 	doABarrelRoll() {

@@ -5,6 +5,7 @@ import { BlurPostFilter } from "@/pipelines/BlurPostFilter";
 import BendWaves from "@/pipelines/BendWavesPostFX";
 import BendWaves2 from "@/pipelines/BendWavesPostFX2";
 import { title, version } from "@/version.json";
+import { GlobalVariables } from "@/components/GlobalVariables";
 
 export class PreloadScene extends BaseScene {
 	constructor() {
@@ -75,8 +76,9 @@ export class PreloadScene extends BaseScene {
 
 	create() {
 		this.fade(true, 100, 0x000000);
+		let gamedata = new GlobalVariables;
 		this.addEvent(100, () => {
-			this.scene.start("TitleScene");
+			this.scene.start("TitleScene", {gameData: gamedata});
 		});
 	}
 }

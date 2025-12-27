@@ -7,6 +7,8 @@ export class UI extends Phaser.GameObjects.Container {
 	private background: Phaser.GameObjects.Image;
 	private text: Phaser.GameObjects.Text;
 
+
+
 	constructor(scene: GameScene) {
 		super(scene, 0, 0);
 		scene.add.existing(this);
@@ -37,6 +39,8 @@ export class UI extends Phaser.GameObjects.Container {
 			this.scene.H - this.background.displayHeight / 2 - 30
 		);
 	}
+
+
 
 	update(time: number, delta: number) {}
 }
