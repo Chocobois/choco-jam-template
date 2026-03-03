@@ -19,6 +19,7 @@
   "devDependencies": {
     "@electron/asar": "^4.0.0",
     "@neutralinojs/neu": "^11.5.0",
+    "@types/node": "^25.3.3",
     "png2icons": "^2.0.1",
     "resedit": "^2.0.3",
     "rimraf": "^6.0.1",
