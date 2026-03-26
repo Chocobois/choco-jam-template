@@ -11,6 +11,7 @@ import { GunUI } from "@/components/WeaponFunctions/GunUI";
 import { GlobalVariables } from "@/components/GlobalVariables";
 import { Tracer } from "@/components/WeaponFunctions/Tracer";
 import { DotTracker } from "@/components/DotTracker";
+import { TileChecker } from "@/components/TileChecker";
 
 export class GameScene extends BaseScene {
 	private background: Phaser.GameObjects.Image;
@@ -46,7 +47,9 @@ export class GameScene extends BaseScene {
 	public masterData: GlobalVariables;
 
 	public tracing: boolean = false;
-
+	private boundary: [number,number,number,number] = [-5000,5000,-5000,5000];
+	private division: [number,number] = [250,250];
+	private chunks: TileChecker;
 
 	private ls: LineSegment;
 
@@ -70,6 +73,7 @@ export class GameScene extends BaseScene {
 		this.background.setDepth(-10);
 		this.cameras.main.setBounds(-5000,-5000,10000,10000);
 		this.cameras.main.setZoom(0.5,0.5);
+		this.chunks = new TileChecker([-6200,6200], [-6200,6200],[250,250]);
 
 
 		this.tyText = this.addText({
@@ -176,6 +180,7 @@ export class GameScene extends BaseScene {
 		this.updateTargets(time,delta);
 		this.updateBullets(time,delta);
 		this.updateEffects(time,delta);
+		this.unstackEnemies();
 		this.gUI.update(time,delta);
 
 	}
@@ -213,11 +218,15 @@ export class GameScene extends BaseScene {
 	}
 
 	updateTargets(t:number,d:number){
+		this.chunks.clear();
 		for(let i = (this.tList.length-1); i >= 0; i--){
 			this.tList[i].update(t, d);
 			if(this.tList[i].deleteFlag){
 				this.tList[i].destroy();
 				this.tList.splice(i,1);
+			} else {
+				this.tList[i].mychunk = [Math.trunc(this.tList[i].x/this.chunks.divider[0]), Math.trunc(this.tList[i].y/this.chunks.divider[1])];
+				this.chunks.index(this.tList[i]);
 			}
 		}
 	}
@@ -270,6 +279,45 @@ export class GameScene extends BaseScene {
 	addPartEffect(e: Effect){
 		this.partEffects.push(e);
 		this.fDisp.add(e);
+	}
+
+	unstackEnemies(){
+		for(let i = (this.tList.length-1); i >= 0; i--){
+			this.overlapCheck(this.tList[i]);
+		}
+	}
+
+	overlapCheck(t: Target){
+		this.checkTargetOverlap(t,this.chunks.fetchAdjacent(t,"0"));
+		this.checkTargetOverlap(t,this.chunks.fetchAdjacent(t,"+y"));
+		this.checkTargetOverlap(t,this.chunks.fetchAdjacent(t,"-y"));
+		this.checkTargetOverlap(t,this.chunks.fetchAdjacent(t,"+x"));
+		this.checkTargetOverlap(t,this.chunks.fetchAdjacent(t,"-x"));
+		this.checkTargetOverlap(t,this.chunks.fetchAdjacent(t,"+x+y"));
+		this.checkTargetOverlap(t,this.chunks.fetchAdjacent(t,"+x-y"));
+		this.checkTargetOverlap(t,this.chunks.fetchAdjacent(t,"-x-y"));
+		this.checkTargetOverlap(t,this.chunks.fetchAdjacent(t,"-x+y"));
+		return;
+	}
+
+	checkTargetOverlap(c: Target, targets: Target[]){
+		if(targets.length <= 0) {
+			return;
+		}
+		let zr = 0;
+		let at = 0;
+		for(let i = (targets.length-1); i >= 0; i--){
+			//console.log("Checking Targets");
+			if(!(c.tID == targets[i].tID)){
+				at = Math.abs(Math.sqrt(Math.pow(targets[i].y-c.y,2)+Math.pow(targets[i].x-c.x,2)));
+				if(at < (targets[i].colrad + c.colrad)){
+					zr = Math.atan2((targets[i].y-c.y),(targets[i].x-c.x));
+					console.log("collision distance: " + at + " mypos: " + c.x + "," + c.y + " tpos: " + targets[i].x + "," + targets[i].y);
+					targets[i].unstack[0] += Math.cos(zr);
+					targets[i].unstack[1] += Math.sin(zr);
+				}
+			}
+		}
 	}
 
 

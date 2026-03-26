@@ -8,6 +8,10 @@ export class Target extends Phaser.GameObjects.Container{
     public hitStun: number = 0;
     public stackLog: Map<number,DmgStack>;
     public bLog: Map<number,HitLog>;
+    public mychunk: [number,number] = [0,0];
+    public unstack: number[] = [0,0];
+    public overlap: boolean = false;
+    public colrad: number = 75;
 
     public tID: number = 0;
     //public pID: number = 0;

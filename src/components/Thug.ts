@@ -14,9 +14,12 @@ export class Thug extends Target{
     private hp: number = 2000;
     private mod: number = 1;
     private ofss: number = 0;
+    private unstackFactor: number = 500;
+
 
     private tpr: number[] = [];
     private tdisp: Phaser.GameObjects.Container;
+    private txt: Phaser.GameObjects.Text;
 
     private boundState: number = 0;
 
@@ -41,7 +44,14 @@ export class Thug extends Target{
         this.gx = this.scene.add.graphics();
         this.gx.fillStyle(0x008080,0.85);
         this.add(this.gx);
-
+        this.txt = this.scene.addText({
+			x: 0,
+			y: 0,
+			size: 30,
+			color: "#FFFFFF",
+			text: "",
+		});
+        this.tdisp.add(this.txt);
         if(this.scene.tracing){
             this.gx.beginPath();
             this.gx.slice(0,0,this.radius,0,2*Math.PI,false,0.0005);
@@ -66,6 +76,11 @@ export class Thug extends Target{
         this.spr.setScale(0.8+(rmod/5),1+((1-rmod)/10));
         this.x += (this.mod*this.v*tmod*Math.cos(this.a)*d/1000);
         this.y += (this.mod*this.v*tmod*Math.sin(this.a)*d/1000);
+        //this.refactor();
+        this.txt.setText("{" + this.unstack[0] + ", "+ this.unstack[1] + "}");
+        this.x += (this.unstack[0]*this.unstackFactor*d/1000);
+        this.y += (this.unstack[1]*this.unstackFactor*d/1000);
+        this.unstack = [0,0];
 
         let c = this.playerDist();
         if(c < 800){
@@ -78,13 +93,21 @@ export class Thug extends Target{
         }
 
 
-
-
         this.spr.setAngle((180/Math.PI)*this.a);
 
         this.updateLogs(t,d);
         this.updateBounds();
 
+    }
+
+    refactor(){
+        let r = Math.sqrt(Math.pow(this.unstack[0],2)+Math.pow(this.unstack[1],2));
+        if(this.unstack[0] != 0) {
+            this.unstack[0] = Math.cos(r);
+        }
+        if(this.unstack[1] != 0) {
+            this.unstack[1] = Math.sin(r);
+        }
     }
 
     updateLogs(t:number,d:number){
