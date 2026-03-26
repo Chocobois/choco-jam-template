@@ -43,8 +43,7 @@ export class Player extends Phaser.GameObjects.Container {
 	private maxCD: number = 250;
 	private gfx: Phaser.GameObjects.Graphics;
 
-	public loadout: Weapon[] = [
-	];
+	public loadout: [Weapon,Weapon,Weapon];
 	public activeWeapon: number = 0;
 
 	constructor(scene: GameScene, x: number, y: number) {
@@ -68,9 +67,6 @@ export class Player extends Phaser.GameObjects.Container {
 		this.gfx = this.scene.add.graphics();
 		this.add(this.gfx);
 		this.gfx.setDepth(15);
-
-		this.loadout = [
-		]
 
 		this.ttText = this.scene.addText({
 			x: 0,
