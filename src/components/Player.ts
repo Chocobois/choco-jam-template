@@ -132,6 +132,10 @@ export class Player extends Phaser.GameObjects.Container {
 		]
 	}
 
+	fetchLoadout(){
+		//this.loadout[0] = new Weapon (this.scene, this.scene.masterData.)
+	}
+
 	update(time: number, delta: number) {
 
 		this.gfx.clear();

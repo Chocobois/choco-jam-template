@@ -40,8 +40,9 @@ export class Weapon {
     public pcd: number = -999;
     public pmod: number = 1;
 
-    public augmentTable: Map<string,number> = new Map([]);
-    public augmentCaps: number[] = [0,0]//1,3,5,8,10
+    //public augmentTable: Map<string,number> = new Map([]);
+    //public augmentCaps: number[] = [0,0]//1,3,5,8,10
+    public augs: Augment[] = [];
 
     public wp: WeaponParams;
 //
@@ -66,7 +67,7 @@ export class Weapon {
 
 
 
-    constructor(scene: BaseScene, wp: WeaponParams){
+    constructor(scene: BaseScene, wp: WeaponParams, augments: Augment[] = []){
         this.scene = scene;
         this.type = wp.type;
         this.wp = wp;
@@ -76,6 +77,7 @@ export class Weapon {
         this.pierce = wp.pen;
         this.pcd = wp.pcd;
         this.img = ("gun_"+wp.type);
+        this.augs = augments;
 
         this.curAmmo = Math.round(wp.clip);
         this.maxAmmo = Math.round(wp.clip);

@@ -4,7 +4,6 @@ import { Augment } from "./WeaponFunctions/Weapon";
 
 export class GlobalVariables {
 
-
     public curGunID: number = -999999999;
     public inv: Armory;
     public defaultParam: WeaponParams = {type:0,name:"Lutra",class:"pistol", dmg: 1, spd: 10000, rof: 5, spcd: 10000, shots: 1, pen: 1, pcd: -999, clip: 18, load: 1.5, width: 1, rad: 1, acc: 0,
@@ -97,5 +96,13 @@ export class GlobalVariables {
             this.curGunID = -999999999
         }
         return this.curGunID;
+    }
+
+    swapLoadout(){
+        
+    }
+
+    fetchGun(){
+        
     }
 }
