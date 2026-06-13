@@ -1,5 +1,4 @@
 import { GameScene } from "@/scenes/GameScene";
-import { score } from "@/state/ScoreState";
 
 const ACCELERATION = 150;
 const MAX_SPEED = 400;
@@ -176,7 +175,6 @@ export class Player extends Phaser.GameObjects.Container {
 	}
 
 	doABarrelRoll() {
-		score.spammedClicks += 1;
 		if (!this.tween || !this.tween.isActive()) {
 			this.tween = this.scene.tweens.add({
 				targets: this.sprite,
@@ -188,8 +186,6 @@ export class Player extends Phaser.GameObjects.Container {
 				duration: 300,
 				yoyo: true,
 			});
-
-			score.clicks += 1;
 		}
 	}
 }

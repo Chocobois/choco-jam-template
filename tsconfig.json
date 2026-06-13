@@ -1,10 +1,10 @@
 {
 	"compilerOptions": {
 		"target": "ES2022",
-		"module": "ESNext",
+		"module": "ES2022",
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
-		"moduleResolution": "Node",
+		"moduleResolution": "bundler",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"esModuleInterop": true,

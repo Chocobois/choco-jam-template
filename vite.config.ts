@@ -2,7 +2,6 @@ import { defineConfig } from "vite";
 
 import zip from "vite-plugin-zip-pack";
 import checker from "vite-plugin-checker";
-import tsconfigPaths from "vite-tsconfig-paths";
 import getGitVersion from "./scripts/git-version";
 import preImageOptimizer from "./scripts/pre-image-optimizer";
 import neuBuild from "./scripts/neu-build";
@@ -23,7 +22,6 @@ export default () => {
     base: "./",
     root: "src",
     plugins: [
-      tsconfigPaths(),
       getGitVersion(),
       checker({
         typescript: true,
@@ -51,6 +49,9 @@ export default () => {
       }),
       buildCleanup(),
     ],
+    resolve: {
+      tsconfigPaths: true,
+    },
     build: {
       outDir: "../dist/web",
       emptyOutDir: false,
