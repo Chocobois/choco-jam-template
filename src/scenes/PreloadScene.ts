@@ -1,9 +1,5 @@
 import { BaseScene } from "./BaseScene";
 import { images, spritesheets, audios } from "@/assets/assets";
-import { GrayScalePostFilter } from "@/pipelines/GrayScalePostFilter";
-import { BlurPostFilter } from "@/pipelines/BlurPostFilter";
-import BendWaves from "@/pipelines/BendWavesPostFX";
-import BendWaves2 from "@/pipelines/BendWavesPostFX2";
 import { title, version } from "@/version.json";
 
 export class PreloadScene extends BaseScene {
@@ -11,19 +7,6 @@ export class PreloadScene extends BaseScene {
 		super({ key: "PreloadScene" });
 	}
 
-	init() {
-		// Load pipelines
-		let renderer = this.renderer as Phaser.Renderer.WebGL.WebGLRenderer;
-		if (renderer.pipelines) {
-			renderer.pipelines.addPostPipeline(
-				"GrayScalePostFilter",
-				GrayScalePostFilter
-			);
-			renderer.pipelines.addPostPipeline("BlurPostFilter", BlurPostFilter);
-			renderer.pipelines.addPostPipeline("BendWaves", BendWaves);
-			renderer.pipelines.addPostPipeline("BendWaves2", BendWaves2);
-		}
-	}
 
 	preload() {
 		this.cameras.main.setBackgroundColor(0x000000);

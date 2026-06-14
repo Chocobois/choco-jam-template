@@ -1,3 +1,5 @@
+import Phaser from "phaser";
+
 export interface TextStyle {
 	fontFamily?: string;
 	x?: number;

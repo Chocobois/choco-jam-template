@@ -7,7 +7,6 @@
 		"moduleResolution": "bundler",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"esModuleInterop": true,
 		"noEmit": true,
 		"skipLibCheck": true,
 		"removeComments": true,
@@ -16,8 +15,9 @@
 		"strictPropertyInitialization": false,
 		"paths": {
 			"@/*": ["./src/*"]
-		}
+		},
+    	"types": ["vite/client"]
 	},
-	"include": ["src", "typings"],
+	"include": ["src"],
 	"exclude": ["node_modules"]
 }

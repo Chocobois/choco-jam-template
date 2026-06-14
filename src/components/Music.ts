@@ -1,3 +1,4 @@
+import Phaser from "phaser";
 import MusicData, { MusicKey } from "@/components/MusicData";
 
 export class Music extends Phaser.Sound.WebAudioSound {

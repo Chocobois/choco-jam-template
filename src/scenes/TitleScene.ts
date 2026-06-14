@@ -1,3 +1,4 @@
+import Phaser from "phaser";
 import { BaseScene } from "@/scenes/BaseScene";
 import { Music } from "@/components/Music";
 
