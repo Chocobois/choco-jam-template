@@ -57,7 +57,8 @@ export default () => {
       emptyOutDir: false,
       chunkSizeWarningLimit: 4096,
       assetsInlineLimit: 0,
-      target: "ES2022",
+      target: "es2022",
+      cssTarget: "esnext",
       minify: "terser",
       terserOptions: {
         format: {
