@@ -18,6 +18,7 @@ import {
   title_dashed,
   game_url,
   game_image,
+  game_icon,
 } from "./scripts/constants";
 
 export default () => {
@@ -26,6 +27,7 @@ export default () => {
   process.env.VITE_GAME_DESCRIPTION = description;
   process.env.VITE_GAME_URL = game_url;
   process.env.VITE_GAME_IMAGE = game_image;
+  process.env.VITE_GAME_ICON = game_icon;
 
   return defineConfig({
     base: "./",
