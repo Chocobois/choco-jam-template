@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 
+import { VitePWA } from "vite-plugin-pwa";
 import zip from "vite-plugin-zip-pack";
 import checker from "vite-plugin-checker";
 import getGitVersion from "./scripts/git-version";
@@ -19,9 +20,11 @@ import {
   game_url,
   game_image,
   game_icon,
+  repo_name,
 } from "./scripts/constants";
+import pwaMode from "./scripts/pwa-mode";
 
-export default () => {
+export default defineConfig(({mode}) => {
   process.env.VITE_GAME_TITLE = title;
   process.env.VITE_GAME_TEAM = team;
   process.env.VITE_GAME_DESCRIPTION = description;
@@ -29,10 +32,14 @@ export default () => {
   process.env.VITE_GAME_IMAGE = game_image;
   process.env.VITE_GAME_ICON = game_icon;
 
-  return defineConfig({
-    base: "./",
+  const isProdOrPreview = mode === 'production';
+  const basePath = isProdOrPreview ? `/${repo_name}/` : '/';
+
+  return {
+    base: basePath,
     root: "src",
     plugins: [
+      pwaMode(mode),
       getGitVersion(),
       checker({
         typescript: true,
@@ -80,5 +87,5 @@ export default () => {
     server: {
       host: "localhost",
     },
-  });
-};
+  };
+});
