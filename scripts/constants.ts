@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
 import { platform } from 'os';
-import { team, title, description, neutralino } from '../game.config.json';
+import { team, title, description, neutralino, itch } from '../game.config.json';
 
 export { team, title, description, neutralino };
 
@@ -29,3 +29,14 @@ export const title_dashed = title.toLowerCase().replace(/\s/gi, '-');
 export const game_dir = `${team_dashed}-${title_dashed}`;
 export const build_path = `./dist/${game_dir}/`;
 
+const [owner, repo] = process.env.GITHUB_REPOSITORY?.split('/') ?? [];
+export const repo_org = (owner 
+		?? execSync(`git config --get remote.origin.url | sed -E 's/.*github.com[:\\/]([^\\/]+).*/\\1/'`).toString())
+				.trim().toLowerCase();
+export const repo_name = (repo 
+		?? execSync("basename -s .git $(git config --get remote.origin.url)").toString())
+				.trim().toLowerCase();
+export const game_image = `https://${repo_org}.github.io/${repo_name}/icon.png`;
+export const game_url = itch.upload 
+	? `https://${itch.username}.itch.io/${itch.game}` 
+	: `https://${repo_org}.github.io/${repo_name}/`;

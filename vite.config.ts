@@ -11,12 +11,21 @@ import bundleMacApp from "./scripts/mac-bundle";
 import bundleLinuxApp from "./scripts/linux-bundle";
 import buildCleanup from "./scripts/build-cleanup";
 
-import { title, team, description, title_dashed } from "./scripts/constants";
+import {
+  title,
+  team,
+  description,
+  title_dashed,
+  game_url,
+  game_image,
+} from "./scripts/constants";
 
 export default () => {
   process.env.VITE_GAME_TITLE = title;
   process.env.VITE_GAME_TEAM = team;
   process.env.VITE_GAME_DESCRIPTION = description;
+  process.env.VITE_GAME_URL = game_url;
+  process.env.VITE_GAME_IMAGE = game_image;
 
   return defineConfig({
     base: "./",
