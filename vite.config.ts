@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 
-import { VitePWA } from "vite-plugin-pwa";
 import zip from "vite-plugin-zip-pack";
 import checker from "vite-plugin-checker";
 import getGitVersion from "./scripts/git-version";
@@ -11,6 +10,8 @@ import bundleWinApp from "./scripts/win-bundle";
 import bundleMacApp from "./scripts/mac-bundle";
 import bundleLinuxApp from "./scripts/linux-bundle";
 import buildCleanup from "./scripts/build-cleanup";
+
+import path from "path";
 
 import {
   title,
@@ -43,7 +44,7 @@ export default defineConfig(({mode}) => {
       getGitVersion(),
       checker({
           typescript: {
-            tsconfigPath: "../tsconfig.json"
+            tsconfigPath: path.resolve(__dirname, "tsconfig.json"),
           },
       }),
       preImageOptimizer(),
