@@ -42,7 +42,9 @@ export default defineConfig(({mode}) => {
       pwaMode(mode),
       getGitVersion(),
       checker({
-        typescript: true,
+          typescript: {
+            tsconfigPath: "../tsconfig.json"
+          },
       }),
       preImageOptimizer(),
       neuInject(),
