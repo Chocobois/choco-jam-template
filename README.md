@@ -5,7 +5,7 @@ We make game, but faster
 ## Quick start
 ### Prerequisites
 * Git installed.
-* Node 20+ installed.
+* Node 24+ installed.
 
 ### Steps
 1. Clone the repository
@@ -51,13 +51,7 @@ A modern up-to-date web browser
 
 ## Notes
 ### Mac
-The app is unsigned when built, so you need to follow these steps when distributing:
-1. First you need to extract the .app from the .dmg before attempting to run the game.
-2. Second, try running the game, a popup will say the app is unverified.
-3. Right click/Open the context menu on the .app, hold option, click open.
-4. Click open in the popup.
-
-The game will start normally from now on.
+The app is unsigned when built, so you need to tell the user to let it through gatekeeper.
 
 ### Linux
 You may have to mark the games as executable before it will let you run them.
