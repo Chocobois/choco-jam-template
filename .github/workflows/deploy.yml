@@ -23,15 +23,15 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
           lfs: true
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7.0.0
         with:
-          node-version: 24
+          node-version: 26
 
       - name: Install dependencies
         run: npm install && sudo apt install genisoimage
@@ -52,13 +52,13 @@ jobs:
           prefix: meta
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: ./dist/web
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5.0.0
 
       - name: Create release
         uses: "marvinpinto/action-automatic-releases@latest"
@@ -75,7 +75,7 @@ jobs:
 
       - name: Upload to Itch
         if: ${{env.game_itch_upload  == 'true'}}
-        uses: Ayowel/butler-to-itch@v1.2.0
+        uses: Ayowel/butler-to-itch@v2.0.0
         with:
           butler_key: ${{ secrets.BUTLER_CREDENTIALS }}
           itch_user: ${{ env.game_itch_username }}
