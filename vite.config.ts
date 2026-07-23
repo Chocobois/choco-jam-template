@@ -24,6 +24,7 @@ import {
   repo_name,
 } from "./scripts/constants";
 import pwaMode from "./scripts/pwa-mode";
+import hmrScenes from "./scripts/hmr-scenes";
 
 export default defineConfig(({mode}) => {
   process.env.VITE_GAME_TITLE = title;
@@ -40,6 +41,7 @@ export default defineConfig(({mode}) => {
     base: basePath,
     root: "src",
     plugins: [
+      hmrScenes(),
       pwaMode(mode),
       getGitVersion(),
       checker({
